@@ -53,12 +53,15 @@ do
     echo_red "Failed to renew the password. Retrying..."
 done
 
+echo_green "[ARCH-INIT] The password was successfully renewed."
+
 echo_cyan "[ARCH-INIT] Setting up the systemd services..."
 
 systemctl enable sshd
 systemctl start sshd
 
-echo_yellow "Now Leaving the Container..."
+echo_green "[ARCH-INIT] Setup Completed!"
+echo_yellow "[ARCH-INIT] Now Leaving the Container..."
 
 # Cleanup the script file
 rm $SCRIPT_PATH
