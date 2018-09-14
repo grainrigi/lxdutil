@@ -36,10 +36,10 @@ check_if_success "lxc file push"
 
 # Show the Instruction
 
-echo_green "The Container was successfully launched!"
-echo_green -n "Now the "
-echo_yellow -n "initialization script "
-echo_green "is being executed."
+echo_green -n "The Container "
+echo_yellow -n "$CONTAINER_NAME "
+echo_green "was successfully launched!"
+echo_green "Now the initialization script is being executed."
 
 
 # Wait for dhcpcd of the container
