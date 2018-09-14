@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Obtain the absolute path of this script
+SCRIPT_PATH="$(realpath "$0")"
+
 echo -e "\e[36m[ARCH-INIT] Installing fundamental packages...\e[m"
 
 yes | pacman -Syu
@@ -27,4 +30,8 @@ systemctl enable sshd
 systemctl start sshd
 
 echo -e "\e[33mNow Leaving the Container...\e[m"
+
+# Cleanup the script file
+rm $SCRIPT_PATH
+
 kill $PPID
