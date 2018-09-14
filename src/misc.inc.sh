@@ -50,3 +50,6 @@ check_if_success () {
         exit $?
     fi
 }
+
+# Trap for SIGINT
+trap 'echo_red "\nAborted by the key signal." && exit 255' 2
