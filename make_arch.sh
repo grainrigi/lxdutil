@@ -2,11 +2,14 @@
 # Create an Archlinux container and Start it
 
 # Include the miscellaneous lib
-. src/misc.inc.sh
+MISC_INC_SH=src/misc.inc.sh
+MISC_INC_SH_NAME=misc.inc.sh
+. $MISC_INC_SH
 
 # Constants
 ARCH_INIT_SH=./src/arch_init.sh
 ARCH_INIT_SH_NAME=arch_init.sh
+
 
 # Get the Container name
 while :
@@ -31,8 +34,10 @@ check_if_success "lxc launch"
 
 # Copy the arch_init.sh
 lxc file push $ARCH_INIT_SH "$CONTAINER_NAME/root/$ARCH_INIT_SH_NAME"
-
 check_if_success "lxc file push"
+lxc file push $MISC_INC_SH "$CONTAINER_NAME/root/$MISC_INC_SH_NAME"
+check_if_success "lxc file push"
+
 
 # Show the Instruction
 

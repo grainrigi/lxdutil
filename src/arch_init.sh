@@ -1,14 +1,18 @@
 #!/bin/bash
 
-# Obtain the absolute path of this script
+# Obtain the absolute path of the script files
 SCRIPT_PATH="$(realpath "$0")"
+MISC_INC_PATH="$(realpath "misc.inc.sh")"
+
+# Include the miscellaneous lib
+. $MISC_INC_PATH
 
 
 # Setup the mirrorlist
 MIRRORLIST=/etc/pacman.d/mirrorlist
 MIRRORTEMP=/tmp/mirrorlist
 
-echo -e "\e[36m[ARCH-INIT] Rewriting /etc/pacman.d/mirrorlist...\e[m"
+echo_cyan "[ARCH-INIT] Rewriting /etc/pacman.d/mirrorlist..."
 
 # Copy the current mirrorlist into /tmp
 cp $MIRRORLIST $MIRRORTEMP
@@ -29,16 +33,16 @@ do
     sed -i 6a"$(sed -n $((${line}))p $MIRRORTEMP)" $MIRRORLIST
 done
 
-echo -e "\e[36m[ARCH-INIT] Installing fundamental packages...\e[m"
+echo_cyan "[ARCH-INIT] Installing fundamental packages..."
 yes | pacman -Syu
 yes | pacman -S vim openssh
 
-echo -e "\e[36m[ARCH-INIT] Configuring sshd...\e[m"
+echo_cyan "[ARCH-INIT] Configuring sshd..."
 
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 
-echo -e "\e[36m[ARCH-INIT] Setting the root password...\e[m"
+echo_cyan "[ARCH-INIT] Setting the root password..."
 
 while :
 do
@@ -46,17 +50,18 @@ do
     if [ $? = 0 ]; then
         break
     fi
-    echo -e "\e[31mFailed to renew the password. Retrying...\e[m"
+    echo_red "Failed to renew the password. Retrying..."
 done
 
-echo -e "\e[36m[ARCH-INIT] Setting up the systemd services...\e[m"
+echo_cyan "[ARCH-INIT] Setting up the systemd services..."
 
 systemctl enable sshd
 systemctl start sshd
 
-echo -e "\e[33mNow Leaving the Container...\e[m"
+echo_yellow "Now Leaving the Container..."
 
 # Cleanup the script file
 rm $SCRIPT_PATH
+rm $MISC_INC_PATH
 
 kill $PPID
