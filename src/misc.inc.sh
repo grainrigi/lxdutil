@@ -10,8 +10,7 @@ echo_colored () {
 
     if [[ $2 == "-"* ]];
     then
-        shift 2
-        echo -e $OPT "\e[${COLOR}m$*\e[m"
+        echo -e ${2%% *} "\e[${COLOR}m${2#* }\e[m"
     else
         shift 1
         echo -e "\e[${COLOR}m$*\e[m"
@@ -19,23 +18,23 @@ echo_colored () {
 }
 
 echo_green () {
-    echo_colored 32 $*
+    echo_colored 32 "$*"
 }
 
 echo_red () {
-    echo_colored 31 $*
+    echo_colored 31 "$*"
 }
 
 echo_cyan () {
-    echo_colored 36 $*
+    echo_colored 36 "$*"
 }
 
 echo_yellow () {
-    echo_colored 33 $*
+    echo_colored 33 "$*"
 }
 
 echo_pink () {
-    echo_colored 35 $*
+    echo_colored 35 "$*"
 }
 
 # check_if_success
