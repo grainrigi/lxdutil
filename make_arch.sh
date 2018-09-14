@@ -41,6 +41,11 @@ echo_green -n "Now the "
 echo_yellow -n "initialization script "
 echo_green "is being executed."
 
+
+# Wait for dhcpcd of the container
+DHCPWAITSEC=5
+echo_cyan "Waiting for dhcpcd...(${DHCPWAITSEC}sec)"
+sleep $DHCPWAITSEC
+
 # Drop into the root shell
-sleep 3
 lxc exec $CONTAINER_NAME /bin/bash /root/$ARCH_INIT_SH_NAME
