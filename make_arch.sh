@@ -1,5 +1,5 @@
 # make_arch.sh
-# Create a Archlinux container and Start it
+# Create an Archlinux container and Start it
 
 # Include the miscellaneous lib
 . misc.inc.sh
