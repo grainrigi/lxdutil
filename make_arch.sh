@@ -28,7 +28,7 @@ done
     
 # Launch the Container
 echo_green "Launching the container..."
-lxc launch images:archlinux/current "$CONTAINER_NAME"
+lxc launch images:archlinux/current "$CONTAINER_NAME" -c "volatile.eth0.host_name=veth-${CONTAINER_NAME}"
 
 check_if_success "lxc launch"
 
