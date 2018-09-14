@@ -12,7 +12,14 @@ echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 
 echo -e "\e[36m[ARCH-INIT] Setting the root password...\e[m"
 
-passwd
+while :
+do
+    passwd
+    if [ $? = 0 ]; then
+        break
+    fi
+    echo -e "\e[31mFailed to renew the password. Retrying...\e[m"
+done
 
 echo -e "\e[36m[ARCH-INIT] Setting up the systemd services...\e[m"
 
