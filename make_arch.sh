@@ -1,13 +1,16 @@
 # make_arch.sh
 # Create an Archlinux container and Start it
 
+# Obtain the Script Directory
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
 # Include the miscellaneous lib
-MISC_INC_SH=src/misc.inc.sh
+MISC_INC_SH=$SCRIPT_DIR/src/misc.inc.sh
 MISC_INC_SH_NAME=misc.inc.sh
 . $MISC_INC_SH
 
 # Constants
-ARCH_INIT_SH=./src/arch_init.sh
+ARCH_INIT_SH=$SCRIPT_DIR/src/arch_init.sh
 ARCH_INIT_SH_NAME=arch_init.sh
 
 
