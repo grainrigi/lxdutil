@@ -2,10 +2,10 @@
 # Create an Archlinux container and Start it
 
 # Include the miscellaneous lib
-. misc.inc.sh
+. src/misc.inc.sh
 
 # Constants
-ARCH_INIT_SH=./arch_init.sh
+ARCH_INIT_SH=./src/arch_init.sh
 ARCH_INIT_SH_NAME=arch_init.sh
 
 # Get the Container name
