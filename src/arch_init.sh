@@ -8,6 +8,10 @@ MISC_INC_PATH="$(realpath "misc.inc.sh")"
 . $MISC_INC_PATH
 
 
+echo_cyan "[ARCH-INIT] Configuring system clock..."
+#timedatectl set-ntp true
+ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
 # Setup the mirrorlist
 MIRRORLIST=/etc/pacman.d/mirrorlist
 MIRRORTEMP=/tmp/mirrorlist
